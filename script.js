@@ -28,7 +28,7 @@ async function authenticateWithBiometrics() {
             }],
 
             timeout: 60000,
-            userVerification: 'preferred' // 'required' forces biometric auth
+            userVerification: 'required' // 'required' forces biometric auth
         };
 
         const credential = await navigator.credentials.get({ publicKey: publicKeyCredentialRequestOptions });
