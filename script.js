@@ -72,7 +72,7 @@ async function openCamera() {
         document.body.removeChild(video);
 
         document.getElementById('message').innerText = "Biometric authentication succeeded!";
-        exitApp();
+        // exitApp();
     } catch (error) {
         console.error("Error accessing camera", error);
         document.getElementById('message').innerText = "Error accessing camera.";
