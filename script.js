@@ -24,7 +24,7 @@ async function authenticateWithBiometrics() {
             allowCredentials: [{
                 type: 'public-key',
                 id: new Uint8Array([/* user credential ID */]),
-                transports: ['usb', 'nfc', 'ble', 'internal'] // 'internal' is for Android's biometrics
+                transports: ['internal'] // 'internal' is for Android's biometrics
             }],
 
             timeout: 60000,
