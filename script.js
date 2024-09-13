@@ -11,24 +11,22 @@ document.getElementById('loginButton').addEventListener('click', function () {
     }
 });
 
-document.getElementById('fingerprintButton').addEventListener('click', function () {
-    // Use WebAuthn API to trigger biometric authentication
+document.getElementById('authenticateButton').addEventListener('click', function () {
     authenticateWithBiometrics();
 });
 
 async function authenticateWithBiometrics() {
     try {
+        // Replace these placeholders with actual server-generated values
         const publicKeyCredentialRequestOptions = {
-            challenge: new Uint8Array([/* generated challenge bytes from server */]),
-
+            challenge: new Uint8Array([/* challenge bytes from server */]),
             allowCredentials: [{
                 type: 'public-key',
                 id: new Uint8Array([/* user credential ID */]),
-                transports: ['internal'] // 'internal' is for Android's biometrics
+                transports: ['internal'] // 'internal' for biometric (fingerprint/face ID)
             }],
-
             timeout: 60000,
-            userVerification: 'required' // 'required' forces biometric auth
+            userVerification: 'preferred' // Can also be 'required' to enforce biometric auth
         };
 
         const credential = await navigator.credentials.get({ publicKey: publicKeyCredentialRequestOptions });
@@ -45,6 +43,6 @@ async function authenticateWithBiometrics() {
 function exitApp() {
     document.getElementById('message').innerText = "App will exit shortly.";
     setTimeout(() => {
-        window.close(); // In a real app, handle app exit logic here
+        window.close(); // Simulates exiting the app
     }, 2000);
 }
