@@ -12,31 +12,28 @@ document.getElementById('loginButton').addEventListener('click', function () {
 });
 
 document.getElementById('authenticateButton').addEventListener('click', function () {
-    authenticateWithBiometrics();
+    // Open camera to simulate facial recognition
+    openCamera();
 });
 
-async function authenticateWithBiometrics() {
+async function openCamera() {
     try {
-        // Replace these placeholders with actual server-generated values
-        const publicKeyCredentialRequestOptions = {
-            challenge: new Uint8Array([/* challenge bytes from server */]),
-            allowCredentials: [{
-                type: 'public-key',
-                id: new Uint8Array([/* user credential ID */]),
-                transports: ['internal'] // 'internal' for biometric (fingerprint/face ID)
-            }],
-            timeout: 60000,
-            userVerification: 'preferred' // Can also be 'required' to enforce biometric auth
-        };
+        const video = document.createElement('video');
+        video.autoplay = true;
+        document.body.appendChild(video);
 
-        const credential = await navigator.credentials.get({ publicKey: publicKeyCredentialRequestOptions });
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
 
-        console.log("Biometric authentication succeeded", credential);
-        document.getElementById('message').innerText = "Biometric authentication succeeded!";
-        exitApp();
+        // Simulate biometric authentication
+        setTimeout(() => {
+            document.body.removeChild(video);
+            document.getElementById('message').innerText = "Biometric authentication succeeded!";
+            exitApp();
+        }, 5000); // Simulate a delay before finishing
     } catch (error) {
-        console.error("Biometric authentication failed", error);
-        document.getElementById('message').innerText = "Biometric authentication failed!";
+        console.error("Error accessing camera", error);
+        document.getElementById('message').innerText = "Error accessing camera.";
     }
 }
 
