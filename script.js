@@ -14,7 +14,7 @@ document.getElementById('loginButton').addEventListener('click', function () {
 
 document.getElementById('authenticateButton').addEventListener('click', function () {
     // Open camera to simulate facial recognition
-    openCamera();
+    // openCamera();
     requestNotificationPermission();
     sendNotification(); // Send notification when the button is clicked
 });
