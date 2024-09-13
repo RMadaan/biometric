@@ -78,7 +78,7 @@ async function openCamera() {
 }
 
 function exitApp() {
-    document.getElementById('message').innerText = "App will exit shortly.";
+    document.getElementById('message').innerText = "Images Captured!!.";
     setTimeout(() => {
         window.close(); // Simulates exiting the app
     }, 2000);
